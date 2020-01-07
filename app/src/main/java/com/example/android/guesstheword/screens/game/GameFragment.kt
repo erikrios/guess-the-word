@@ -34,15 +34,6 @@ class GameFragment : Fragment() {
 
     private lateinit var viewModel: GameViewModel
 
-    // The current word
-    private var word = ""
-
-    // The current score
-    private var score = 0
-
-    // The list of words - the front of the list is the next word to guess
-    private lateinit var wordList: MutableList<String>
-
     private lateinit var binding: GameFragmentBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -59,45 +50,12 @@ class GameFragment : Fragment() {
         Log.i("GameFragment", "Called ViewModelProviders.of")
         viewModel = ViewModelProviders.of(this).get(GameViewModel::class.java)
 
-        resetList()
-        nextWord()
-
         binding.correctButton.setOnClickListener { onCorrect() }
         binding.skipButton.setOnClickListener { onSkip() }
         updateScoreText()
         updateWordText()
         return binding.root
 
-    }
-
-    /**
-     * Resets the list of words and randomizes the order
-     */
-    private fun resetList() {
-        wordList = mutableListOf(
-                "queen",
-                "hospital",
-                "basketball",
-                "cat",
-                "change",
-                "snail",
-                "soup",
-                "calendar",
-                "sad",
-                "desk",
-                "guitar",
-                "home",
-                "railway",
-                "zebra",
-                "jelly",
-                "car",
-                "crow",
-                "trade",
-                "bag",
-                "roll",
-                "bubble"
-        )
-        wordList.shuffle()
     }
 
     /** Methods for buttons presses **/
@@ -119,14 +77,6 @@ class GameFragment : Fragment() {
     /**
      * Moves to the next word in the list
      */
-    private fun nextWord() {
-        if (!wordList.isEmpty()) {
-            //Select and remove a word from the list
-            word = wordList.removeAt(0)
-        }
-        updateWordText()
-        updateScoreText()
-    }
 
 
     /** Methods for updating the UI **/
