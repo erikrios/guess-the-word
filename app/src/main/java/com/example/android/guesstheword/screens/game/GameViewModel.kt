@@ -6,10 +6,10 @@ import androidx.lifecycle.ViewModel
 class GameViewModel : ViewModel() {
 
     // The current word
-  var word = ""
+    var word = ""
 
     // The current score
-  var score = 0
+    var score = 0
 
     // The list of words - the front of the list is the next word to guess
     private lateinit var wordList: MutableList<String>
@@ -61,18 +61,16 @@ class GameViewModel : ViewModel() {
             //Select and remove a word from the list
             word = wordList.removeAt(0)
         }
-        updateWordText()
-        updateScoreText()
     }
 
-    private fun onSkip() {
+    fun onSkip() {
         if (!wordList.isEmpty()) {
             score--
         }
         nextWord()
     }
 
-    private fun onCorrect() {
+    fun onCorrect() {
         if (!wordList.isEmpty()) {
             score++
         }
