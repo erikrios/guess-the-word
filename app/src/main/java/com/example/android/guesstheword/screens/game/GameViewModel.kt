@@ -95,4 +95,11 @@ class GameViewModel : ViewModel() {
     fun onGameFinish() {
         _eventGameFinished.value = true
     }
+
+    /**
+     * Method for the game completed event
+     */
+    fun onGameFinishComplete() {
+        _eventGameFinished.value = false
+    }
 }
