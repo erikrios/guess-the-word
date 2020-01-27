@@ -53,6 +53,11 @@ class GameFragment : Fragment() {
         Log.i("GameFragment", "Called ViewModelProviders.of")
         viewModel = ViewModelProviders.of(this).get(GameViewModel::class.java)
 
+        // Observer for the Game finished event
+        viewModel.eventGameFinished.observe(this, Observer<Boolean> { hasFinished ->
+            if (hasFinished) gameFinished()
+        })
+
         viewModel.score.observe(this, Observer { newScore ->
             binding.scoreText.text = newScore.toString()
         })
@@ -84,8 +89,8 @@ class GameFragment : Fragment() {
 
     private fun gameFinished() {
         Toast.makeText(activity, "Game has just finished", Toast.LENGTH_SHORT).show()
-        val action = GameFragmentDirections.actionGameToScore()
-        action.score = viewModel.score.value ?: 0
-        NavHostFragment.findNavController(this).navigate(action)
+//        val action = GameFragmentDirections.actionGameToScore()
+//        action.score = viewModel.score.value ?: 0
+//        NavHostFragment.findNavController(this).navigate(action)
     }
 }
