@@ -63,21 +63,17 @@ class GameViewModel : ViewModel() {
     private fun nextWord() {
         if (!wordList.isEmpty()) {
             //Select and remove a word from the list
-            word = wordList.removeAt(0)
+            word.value = wordList.removeAt(0)
         }
     }
 
     fun onSkip() {
-        if (!wordList.isEmpty()) {
-            score--
-        }
+        score.value = (score.value)?.minus(1)
         nextWord()
     }
 
     fun onCorrect() {
-        if (!wordList.isEmpty()) {
-            score++
-        }
+        score.value = (score.value)?.plus(1)
         nextWord()
     }
 }
