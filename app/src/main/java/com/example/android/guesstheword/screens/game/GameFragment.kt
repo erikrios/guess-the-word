@@ -53,6 +53,10 @@ class GameFragment : Fragment() {
         Log.i("GameFragment", "Called ViewModelProviders.of")
         viewModel = ViewModelProviders.of(this).get(GameViewModel::class.java)
 
+        // Set the viewmodel for databinding - this allows the bound layout access
+        // to all the data in the ViewModel
+        binding.gameViewModel = viewModel
+
         // Observer for the Game finished event
         viewModel.eventGameFinished.observe(this, Observer<Boolean> { hasFinished ->
             if (hasFinished) gameFinished()
